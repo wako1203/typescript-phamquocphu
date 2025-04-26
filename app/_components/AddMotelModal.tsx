@@ -22,10 +22,21 @@ export default function AddMotelModal({
     ghiChu: "", 
   });
 
+  const generateMotelId = (existingIds: string[]): string => {
+    const maxId = existingIds
+      .map((id) => parseInt(id.replace("PT-", ""), 10))
+      .filter((num) => !isNaN(num))
+      .reduce((max, num) => Math.max(max, num), 0);
+    return `PT-${String(maxId + 1).padStart(2, "0")}`;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const existingIds = thanhToan.map((method) => method.id); 
+    const newId = generateMotelId(existingIds); 
     await addMotel({
       ...formData,
+      id: newId,
       startDay: new Date(formData.startDay),
     }).then((newMotel) => {
       onAdd({

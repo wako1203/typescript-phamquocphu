@@ -30,6 +30,7 @@ async function deleteMotel(id: string): Promise<void> {
 }
 
 export async function addMotel(data: {
+  id: string;
   name: string;
   phone: string;
   startDay: Date;

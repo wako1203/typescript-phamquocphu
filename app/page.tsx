@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { getAllMotels, getAllThanhToan, deleteMotel } from "./_actions/actions"; // Cập nhật import
 import { FullMotel } from "@/types";
-import AddMotelModal from "./components/AddMotelModal"; // Import modal thêm phòng trọ
+import AddMotelModal from "./_components/AddMotelModal"; // Import modal thêm phòng trọ
 import { ThanhToan } from "@prisma/client";
 
 export default function Page() {

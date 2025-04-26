@@ -1,0 +1,23 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+model Motel {
+    id            String          @id @default(cuid())
+    name           String
+    phone             String
+    startDay        DateTime @default(now())
+    thanhtoanID     String
+    GhiChu          String?
+    ThanhToan ThanhToan @relation("ThanhToanToMotel", fields: [thanhtoanID], references: [id])
+}
+model ThanhToan {
+    id            String          @id @default(cuid())
+    phuongThuc     String
+    motels        Motel[]         @relation("ThanhToanToMotel")
+}

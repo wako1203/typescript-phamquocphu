@@ -34,7 +34,7 @@ export async function addMotel(data: {
   phone: string;
   startDay: Date;
   ghiChu: string;
-  thanhToanId: string; // Keep this in the function signature for input
+  thanhToanId: string; 
 }): Promise<Motel> {
   return await prisma.motel.create({
     data: {
@@ -42,7 +42,7 @@ export async function addMotel(data: {
       phone: data.phone,
       startDay: data.startDay,
       GhiChu: data.ghiChu,
-      ThanhToan: { connect: { id: data.thanhToanId } }, // Use ThanhToan for connection
+      ThanhToan: { connect: { id: data.thanhToanId } }, 
     },
   });
 }

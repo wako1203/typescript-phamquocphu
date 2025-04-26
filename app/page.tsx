@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getAllMotels, getAllThanhToan, deleteMotel } from "./_actions/actions"; // Cập nhật import
+import { getAllMotels, getAllThanhToan, deleteMotel } from "./_actions/actions";
 import { FullMotel } from "@/types";
-import AddMotelModal from "./_components/AddMotelModal"; // Import modal thêm phòng trọ
+import AddMotelModal from "./_components/AddMotelModal"; 
 import { ThanhToan } from "@prisma/client";
 
 export default function Page() {
@@ -11,8 +11,8 @@ export default function Page() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [thanhToan, setThanhToan] = useState<ThanhToan[]>([]);
-  const [selectedMotels, setSelectedMotels] = useState<Set<string>>(new Set()); // Trạng thái các phòng trọ được chọn
-  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false); // Trạng thái hộp thoại xác nhận xóa
+  const [selectedMotels, setSelectedMotels] = useState<Set<string>>(new Set()); 
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false); 
 
   useEffect(() => {
     async function fetchMotels() {
@@ -57,7 +57,7 @@ export default function Page() {
       prevMotels.filter((motel) => !selectedMotels.has(motel.id))
     );
     setSelectedMotels(new Set());
-    setIsDeleteDialogOpen(false); // Đóng hộp thoại sau khi xóa
+    setIsDeleteDialogOpen(false); 
   };
 
   const generateMotelId = (existingIds: string[]): string => {
@@ -79,7 +79,7 @@ export default function Page() {
           Thêm thông tin thuê trọ
         </button>
         <button
-          onClick={() => setIsDeleteDialogOpen(true)} // Mở hộp thoại xác nhận
+          onClick={() => setIsDeleteDialogOpen(true)} 
           className={`ml-2 px-4 py-2 rounded shadow-md transition ${
             selectedMotels.size === 0
               ? "bg-gray-300 text-gray-500 cursor-not-allowed"
@@ -167,13 +167,13 @@ export default function Page() {
             </ul>
             <div className="flex justify-end">
               <button
-                onClick={() => setIsDeleteDialogOpen(false)} // Đóng hộp thoại
+                onClick={() => setIsDeleteDialogOpen(false)}
                 className="bg-gray-300 text-black px-4 py-2 mr-2 rounded"
               >
                 Hủy
               </button>
               <button
-                onClick={confirmDelete} // Xác nhận xóa
+                onClick={confirmDelete}
                 className="bg-red-500 text-white px-4 py-2 rounded"
               >
                 Xóa
